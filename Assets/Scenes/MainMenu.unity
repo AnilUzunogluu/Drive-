@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: aa87107d0c3535c4983a4edb2d0e9f7b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18167777, g: 0.2273359, b: 0.30741844, a: 1}
+  m_IndirectSpecularColor: {r: 0.0060169566, g: 0.060250062, b: 0.19530022, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -405,10 +405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6292dc6538c8ead43ab908acc5117468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playButton: {fileID: 751570599}
   maximumEnergy: 5
   energyRechargeDuration: 1
   energyText: {fileID: 1508952573}
-  playButton: {fileID: 751570599}
   notificationManager: {fileID: 894600940}
   mainMenu: {fileID: 841368749}
 --- !u!4 &154112532
@@ -995,8 +995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 223921752}
+  energySystem: {fileID: 154112531}
   medalImageUI: {fileID: 1708038355}
-  _energySystem: {fileID: 154112531}
   bronzeMedal: {fileID: 21300012, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
   silverMedal: {fileID: 21300010, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
   goldMedal: {fileID: 21300008, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}

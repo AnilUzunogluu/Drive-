@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -13,10 +12,10 @@ public class ScoreSystem : MonoBehaviour
     private int _seconds;
     
     
-    private const float SCORE_MULTIPLIER = 2.5f;
+    private const float SCORE_MULTIPLIER = 3f;
     public const string HIGH_SCORE_KEY = "HighScore";
-    
-    void Update()
+
+    private void Update()
     {
         UpdateScore();
         DisplayScore();

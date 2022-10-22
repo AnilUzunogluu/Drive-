@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private TMP_Text highScoreText;
-    [SerializeField] private Image medalImageUI;
-    [SerializeField] private EnergySystem _energySystem;
+    [SerializeField] private EnergySystem energySystem;
     
     [Header("Medals")]
+    [SerializeField] private Image medalImageUI;
     [SerializeField] private Sprite bronzeMedal;
     [SerializeField] private Sprite silverMedal;
     [SerializeField] private Sprite goldMedal;
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if (_energySystem.Energy > 0)
+        if (energySystem.Energy > 0)
         {
             OnPLay?.Invoke();
             SceneManager.LoadScene("Game");
@@ -48,8 +48,6 @@ public class MainMenu : MonoBehaviour
             case > 100:
                 medalImageUI.sprite = bronzeMedal;
                 medalImageUI.enabled = true;
-                break;
-            default:
                 break;
         }
     }

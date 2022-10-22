@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
@@ -14,7 +12,7 @@ public class CarMovement : MonoBehaviour
     
     private int _rotationValue;
 
-    void Update()
+    private void Update()
     {
         MoveForward();
         RotateCar();

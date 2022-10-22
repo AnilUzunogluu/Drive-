@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class EnergySystem : MonoBehaviour
 {
+    [SerializeField] private Button playButton;
+
     [Header("Energy")]
     [SerializeField] private int maximumEnergy;
     [SerializeField] private int energyRechargeDuration;
     [SerializeField] private TMP_Text energyText;
-    [SerializeField] private Button playButton;
 
     [Header("Scripts")]
     [SerializeField] private NotificationManager notificationManager;
@@ -24,16 +25,24 @@ public class EnergySystem : MonoBehaviour
 
     private void OnEnable()
     {
-        mainMenu.OnPLay += ManageEnergy;
+        mainMenu.OnPLay += DecreaseEnergy;
     }
 
     private void OnDisable()
     {
-        mainMenu.OnPLay -= ManageEnergy;
+        mainMenu.OnPLay -= DecreaseEnergy;
     }
 
-    void Start()
+    private void Start()
     {
+        OnApplicationFocus(true);
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus) return;
+
+        CancelInvoke();
         _energy = PlayerPrefs.GetInt(ENERGY_KEY, maximumEnergy);
         CheckEnergyRecharge();
         UpdateEnergyDisplay();
@@ -41,20 +50,22 @@ public class EnergySystem : MonoBehaviour
 
     private void CheckEnergyRecharge()
     {
-        if (_energy != 0) return;
-        playButton.interactable = false;
-        var energyReadyString = PlayerPrefs.GetString(ENERGY_READY_KEY, string.Empty);
-        if (energyReadyString == string.Empty) return;
-
-        DateTime energyReady = DateTime.Parse(energyReadyString);
-
-        if (DateTime.Now > energyReady)
+        if (_energy == 0)
         {
-            EnergyRecharged();
-        }
-        else
-        {
-            Invoke(nameof(EnergyRecharged), (energyReady - DateTime.Now).Seconds);
+            playButton.interactable = false;
+            var energyReadyString = PlayerPrefs.GetString(ENERGY_READY_KEY, string.Empty);
+            if (energyReadyString == string.Empty) return;
+
+            var energyReady = DateTime.Parse(energyReadyString);
+
+            if (DateTime.Now > energyReady)
+            {
+                EnergyRecharged();
+            }
+            else
+            {
+                Invoke(nameof(EnergyRecharged), (energyReady - DateTime.Now).Seconds);
+            }
         }
     }
 
@@ -71,17 +82,18 @@ public class EnergySystem : MonoBehaviour
         energyText.text = $":{_energy}";
     }
 
-    private void ManageEnergy()
+    private void DecreaseEnergy()
     {
         _energy--;
         PlayerPrefs.SetInt(ENERGY_KEY, _energy);
-        
-        ScheduleEnergyRecharge();
+        if (_energy == 0)
+        {
+            ScheduleEnergyRecharge();
+        }
     }
 
     private void ScheduleEnergyRecharge()
     {
-        if (_energy != 0) return;
         var energyReadyTime = DateTime.Now.AddMinutes(energyRechargeDuration);
         PlayerPrefs.SetString(ENERGY_READY_KEY, energyReadyTime.ToString());
         notificationManager.ScheduleNotification(energyReadyTime);
