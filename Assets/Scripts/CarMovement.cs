@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float speedIncrement = 0.3f;
-    [SerializeField] private float rotationSpeed = 75f; 
-    [SerializeField] private float rotationIncrement = 0.5f;
+    [Header("Speed")]
+    [SerializeField][Tooltip("Sets the forward speed of the vehicle")] private float speed = 5f;
+    [SerializeField][Tooltip("Sets the value to increment the speed every second")] private float speedIncrement = 0.3f;
+    
+    [Header("Rotation")]
+    [SerializeField][Tooltip("Sets the base rotation speed of the vehicle")] private float rotationSpeed = 75f; 
+    [SerializeField][Tooltip("Sets the value to increment the rotation speed every second")] private float rotationIncrement = 0.5f;
     
     private int _rotationValue;
 
