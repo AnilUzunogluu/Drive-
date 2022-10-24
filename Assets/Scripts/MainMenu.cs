@@ -37,15 +37,15 @@ public class MainMenu : MonoBehaviour
     {
         switch (score)
         {
-            case > 300:
+            case > 400:
                 medalImageUI.sprite = goldMedal;
                 medalImageUI.enabled = true;
                 break;
-            case > 200:
+            case > 250:
                 medalImageUI.sprite = silverMedal;
                 medalImageUI.enabled = true;
                 break;
-            case > 100:
+            case > 150:
                 medalImageUI.sprite = bronzeMedal;
                 medalImageUI.enabled = true;
                 break;

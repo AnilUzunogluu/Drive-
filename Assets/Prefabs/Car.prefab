@@ -77,9 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8428e4784206a824fb5ca1dd72422b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 23
-  speedIncrement: 0.2
-  rotationSpeed: 80
+  collisionManager: {fileID: 6339161086820655794}
+  speed: 22
+  speedIncrement: 0.15
+  rotationSpeed: 85
   rotationIncrement: 0.7
 --- !u!114 &6339161086820655794
 MonoBehaviour:
